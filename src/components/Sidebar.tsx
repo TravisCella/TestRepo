@@ -23,7 +23,7 @@ export default function Sidebar({
 
       <div>
         <h3 className="text-base font-bold text-sky-400 mb-2 border-b border-slate-600 pb-1">
-          Your Stats
+          Your Attacks
         </h3>
         <div className="flex justify-between text-sm mb-1">
           <span className="text-green-400">Hits:</span>
@@ -34,14 +34,14 @@ export default function Sidebar({
           <span className="font-bold">{playerStats.misses}</span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-yellow-400">Ships Left:</span>
-          <span className="font-bold">{playerStats.shipsRemaining}</span>
+          <span className="text-yellow-400">Your Ships Left:</span>
+          <span className="font-bold">{playerShips.filter(s => !s.sunk).length}</span>
         </div>
       </div>
 
       <div>
         <h3 className="text-base font-bold text-red-400 mb-2 border-b border-slate-600 pb-1">
-          AI Stats
+          AI Attacks
         </h3>
         <div className="flex justify-between text-sm mb-1">
           <span className="text-green-400">Hits:</span>
@@ -52,8 +52,8 @@ export default function Sidebar({
           <span className="font-bold">{aiStats.misses}</span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-yellow-400">Ships Left:</span>
-          <span className="font-bold">{aiStats.shipsRemaining}</span>
+          <span className="text-yellow-400">Enemy Ships Left:</span>
+          <span className="font-bold">{aiShips.filter(s => !s.sunk).length}</span>
         </div>
       </div>
 
