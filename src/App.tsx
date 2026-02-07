@@ -80,7 +80,7 @@ function App() {
         setAiBoard(aiResult.board);
         setAiShips(aiResult.ships);
         setGamePhase('battle');
-        setMessage('All ships placed! Click on the enemy board to attack.');
+        setMessage('All ships placed! Click on the Japanese Empire board to attack.');
       } else {
         setMessage(`Place your ${SHIP_CONFIGS[nextIndex].name} (length: ${SHIP_CONFIGS[nextIndex].length})`);
       }
@@ -98,7 +98,7 @@ function App() {
     setAiBoard(aiResult.board);
     setAiShips(aiResult.ships);
     setGamePhase('battle');
-    setMessage('Ships placed randomly! Click on the enemy board to attack.');
+    setMessage('Ships placed randomly! Click on the Japanese Empire board to attack.');
   }, []);
 
   const handlePlayerAttack = useCallback(
@@ -133,20 +133,20 @@ function App() {
         if (result.result === 'sunk') {
           newPlayerStats.shipsRemaining = result.ships.filter(s => !s.sunk).length;
           const sunkShip = result.ships.find(s => s.sunk && s.positions.some(([r, c]) => r === row && c === col));
-          setMessage(`You sunk their ${sunkShip?.name}!`);
+          setMessage(`You sunk the Japanese Empire's ${sunkShip?.name}!`);
         } else {
-          setMessage('Hit! Nice shot!');
+          setMessage('Direct hit! Nice shot, Admiral!');
         }
       } else {
         newPlayerStats.misses += 1;
-        setMessage('Miss! AI is thinking...');
+        setMessage('Miss! The Japanese Empire is planning...');
       }
       setPlayerStats(newPlayerStats);
 
       if (isGameOver(result.ships)) {
         setGamePhase('gameOver');
         setWinner('player');
-        setMessage('You win! All enemy ships destroyed!');
+        setMessage('Victory! The US Navy has destroyed the Japanese Empire fleet!');
         return;
       }
 
@@ -166,20 +166,20 @@ function App() {
             const sunkShip = aiResult.ships.find(s =>
               s.sunk && s.positions.some(([r, c]) => r === aiRow && c === aiCol)
             );
-            setMessage(`AI sunk your ${sunkShip?.name}! Your turn.`);
+            setMessage(`The Japanese Empire sunk your ${sunkShip?.name}! Your turn, Admiral.`);
           } else {
-            setMessage('AI got a hit! Your turn.');
+            setMessage('The Japanese Empire scored a hit! Your turn, Admiral.');
           }
         } else {
           newAiStats.misses += 1;
-          setMessage('AI missed! Your turn.');
+          setMessage('The Japanese Empire missed! Your turn, Admiral.');
         }
         setAiStats(newAiStats);
 
         if (isGameOver(aiResult.ships)) {
           setGamePhase('gameOver');
           setWinner('ai');
-          setMessage('Game Over! The AI destroyed all your ships.');
+          setMessage('Defeat! The Japanese Empire has destroyed the US Navy fleet.');
           return;
         }
 
@@ -206,11 +206,11 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 flex flex-col">
+    <div className="min-h-screen bg-slate-900 flex flex-col app-backdrop">
       <header className="bg-slate-800 py-4 px-6 shadow-lg">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <h1 className="text-2xl font-bold text-white tracking-wide">
-            Battleship
+            Battleship: Pacific Theater
           </h1>
           {gamePhase !== 'placement' && (
             <button
@@ -250,7 +250,7 @@ function App() {
             orientation={orientation}
             onCellClick={gamePhase === 'placement' ? handlePlaceShip : () => {}}
             disabled={gamePhase === 'battle' || gamePhase === 'gameOver'}
-            label="Your Board"
+            label="US Navy Fleet"
           />
 
           <Sidebar
@@ -268,7 +268,7 @@ function App() {
               isPlacementPhase={false}
               onCellClick={handlePlayerAttack}
               disabled={!isPlayerTurn || gamePhase === 'gameOver'}
-              label="Enemy Board"
+              label="Japanese Empire Fleet"
             />
           )}
         </div>
@@ -280,7 +280,7 @@ function App() {
                 winner === 'player' ? 'text-green-400' : 'text-red-400'
               }`}
             >
-              {winner === 'player' ? 'Victory!' : 'Defeat!'}
+              {winner === 'player' ? 'US Navy Victory!' : 'Japanese Empire Prevails!'}
             </h2>
             <button
               onClick={handleRestart}

@@ -50,11 +50,11 @@ export default function Board({
           ? 'bg-gray-500 border-gray-600'
           : 'bg-sky-800 border-sky-900 hover:bg-sky-700';
       case 'hit':
-        return 'bg-red-600 border-red-700';
+        return 'bg-gradient-to-br from-yellow-400 via-orange-500 to-red-600 border-orange-600 animate-pulse';
       case 'miss':
         return 'bg-sky-950 border-sky-900';
       case 'sunk':
-        return 'bg-red-900 border-red-950';
+        return 'bg-gradient-to-br from-orange-700 via-red-800 to-red-950 border-red-900';
       default:
         return 'bg-sky-800 border-sky-900';
     }

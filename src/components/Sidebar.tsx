@@ -23,7 +23,7 @@ export default function Sidebar({
 
       <div>
         <h3 className="text-base font-bold text-sky-400 mb-2 border-b border-slate-600 pb-1">
-          Your Stats
+          US Navy Stats
         </h3>
         <div className="flex justify-between text-sm mb-1">
           <span className="text-green-400">Hits:</span>
@@ -41,7 +41,7 @@ export default function Sidebar({
 
       <div>
         <h3 className="text-base font-bold text-red-400 mb-2 border-b border-slate-600 pb-1">
-          AI Stats
+          Japanese Empire Stats
         </h3>
         <div className="flex justify-between text-sm mb-1">
           <span className="text-green-400">Hits:</span>
@@ -59,7 +59,7 @@ export default function Sidebar({
 
       <div>
         <h3 className="text-base font-bold text-sky-400 mb-2 border-b border-slate-600 pb-1">
-          Your Fleet
+          US Navy Fleet
         </h3>
         {playerShips.map((ship) => (
           <div key={ship.name} className="flex justify-between items-center text-sm mb-1">
@@ -86,7 +86,7 @@ export default function Sidebar({
 
       <div>
         <h3 className="text-base font-bold text-red-400 mb-2 border-b border-slate-600 pb-1">
-          Enemy Fleet
+          Japanese Empire Fleet
         </h3>
         {aiShips.map((ship) => (
           <div key={ship.name} className="flex justify-between items-center text-sm mb-1">
